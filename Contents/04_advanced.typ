@@ -6,7 +6,10 @@
 
 == 图像资源自动打包
 
-构建脚本会自动扫描正文中的 `<img>` 标签，解析本地相对路径并将其自动复制到 EPUB 的 `OEBPS/images/` 目录，同时在 `content.opf` 的 `<manifest>` 中登记合规的 MIME 类型。
+构建脚本会自动扫描正文中的 `<img>` 标签：
+
+- 以本地路径引用的图片会复制到 EPUB 的 `OEBPS/images/` 目录（按出现顺序编号），并在 `content.opf` 的 `<manifest>` 中登记 MIME 类型；
+- 新版 Typst 会把本地图片内联为 data URI（本示例的 SVG 即如此），随章节直接输出，无需额外处理。
 
 #figure(
   image("../assets/sample-diagram.svg", width: 85%),

@@ -6,16 +6,15 @@
 
 == 国际数字出版标准合规性清单
 
-转换器输出产物严格遵从 W3C / IDPF EPUB 3.3 与 EPUB 2.0.1 规范标准：
+转换器输出产物严格遵从 W3C / IDPF EPUB 3.3 规范标准：
 
 #table(
   columns: (1.2fr, 1fr, 2fr),
   align: (left, center, left),
   table.header([*规范维度*], [*适用标准*], [*实现机制说明*]),
-  [文档包定义], [EPUB 3.3 / OPF], [声明 `unique-identifier`、`dcterms:modified` 及 RFC 4122 v5 确定性 UUID],
+  [文档包定义], [EPUB 3.3 / OPF], [声明 `unique-identifier`、`dcterms:modified` 及 `urn:typ2epub:` 命名标识符],
   [导航地标 (Landmarks)], [EPUB 3 / Nav], [在 `nav.xhtml` 生成语义化 `<nav epub:type="landmarks">`（封面/目录/正文）],
-  [向下兼容导航 (NCX)], [EPUB 2 / NCX], [生成带有严格单调递增 `playOrder` 的 `toc.ncx` 树状目录],
-  [归档包结构], [ZIP / OCF], [`mimetype` 首位无压缩（`STORED`）存储，其余文件字典序 `Deflate` 压缩],
+  [归档包结构], [ZIP / OCF], [`mimetype` 首位无压缩（`STORED`）存储，其余文件 `Deflate` 压缩],
   [数学公式支持], [MathML 3.0], [自动检测 `<math>` 标签并在 Manifest 标记 `properties="mathml"`],
   [分章独立尾注], [EPUB 3 Footnotes], [将全局注脚按章节分离并赋予 `role="doc-endnotes"` 与双向回跳锚点#footnote[这是附录中的独立尾注测试，用于验证附录分部的注脚回跳功能。]],
 )

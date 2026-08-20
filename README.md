@@ -1,6 +1,8 @@
 # Typst to EPUB
 
-将 Typst 文档转换为 EPUB 3 电子书的命令行工具，附带一套排版模板。转换器是一个 Go 二进制，构建时只需调用 Typst CLI，无其他运行时依赖；同时内置 EPUB 2 `toc.ncx` 导航，兼容旧款阅读器。
+> 因 Typst 尚未支持 EPUB 导出，该项目最初仅为满足 [个人小说](https://www.icey.one/notes/) 输出为 EPUB 的需求而编写的脚本。后来发现社区暂未有人实现类似功能，故将脚本抽象后使用 Go 重写开源。个人项目难免存在 Bug，如有问题请提 Issue。
+
+一个 Typst → EPUB 的轻量级脚本，只需调用 Typst CLI，无其他依赖。
 
 ## 特性
 
@@ -11,12 +13,9 @@
 - 跨章节引用自动重写
 - 封面：`-c` 指定 → `assets/cover.png` / `cover.jpg` / `cover.pdf` → 都没有时自动生成白底黑字简洁封面
 
-## 环境要求
-
-- Go 1.25+
-- Typst CLI 0.13+（需要 `--features html` 导出）
-
 ## 快速开始
+
+> 环境要求 Go 1.25+ Typst CLI 0.15+
 
 ```bash
 # 直接运行
@@ -40,12 +39,12 @@ go build -o build/typ2epub ./scripts
 
 ```text
 .
-├── main.typ            # 入口：调用 elegantbook 模板并组织内容
-├── template.typ        # 模板：分区环境与排版规则
+├── main.typ            # typ 主文件
+├── template.typ        # Typst 模板
 ├── template/           # 模板组件（定理环境、主题变量）
-├── Contents/           # 正文分章源文件
-├── assets/             # 静态资源（含可选封面）
-├── scripts/            # 转换器（Go）
+├── Contents/           # typ 分章文件
+├── assets/             # 静态资源
+├── scripts/            # 转换脚本
 │   ├── main.go         # CLI 入口
 │   ├── builder.go      # 构建流程编排
 │   ├── dom.go          # HTML DOM 变换（分章、脚注、引用）
@@ -104,5 +103,3 @@ go build -o build/typ2epub ./scripts
 ## License
 
 [Apache-2.0](LICENSE)
-
-> 注：`scripts/` 由 AI 辅助编写，架构与流水线由作者设计。如有边界问题，欢迎提交 Issue。

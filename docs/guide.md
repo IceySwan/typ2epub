@@ -30,7 +30,7 @@
 
 规则：
 
-- 每个一级标题（`=`）生成一个独立章节文件（`chap_XX_xxx.xhtml`），并注册到 `nav.xhtml` 与 `toc.ncx`。
+- 每个一级标题（`=`）生成一个独立章节文件（`chap_XX_xxx.xhtml`），并注册到 `nav.xhtml` 目录。
 - 二级及以下标题（`==`、`===`）进入章节内的层级目录。
 - `Contents/` 下的文件名任意（`01_intro.typ`、`ch1.typ` 均可），切章只按编译后的标题顺序。
 
@@ -81,7 +81,7 @@ $
 )
 ```
 
-图片会被按出现顺序编号为 `img_0001.png`…，复制进 EPUB 的 `OEBPS/images/` 并登记 Manifest，`src` 自动重写。
+以本地路径引用的图片会被按出现顺序编号为 `img_0001.png`…，复制进 EPUB 的 `OEBPS/images/` 并登记 Manifest，`src` 自动重写；新版 Typst 会把本地图片内联为 data URI，随章节直接输出，无需处理。
 
 ## 引用与脚注
 
@@ -104,7 +104,7 @@ $
   align: (left, center, left),
   table.header([*标准*], [*版本*], [*说明*]),
   [EPUB], [3.3], [现代电子书标准],
-  [NCX], [2.0.1], [向下兼容旧阅读器],
+  [MathML], [3.0], [数学公式渲染],
 )
 ```
 
