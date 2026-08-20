@@ -32,8 +32,8 @@ go build -o build/typ2epub ./scripts
 |---|---|---|---|
 | `--input` | `-i` | `main.typ` | Typst 入口文件 |
 | `--output` | `-o` | `build/<标题>-v<版本>.epub` | 输出路径 |
-| `--cover` | `-c` | 自动 | 自定义封面（PNG/JPG/SVG/PDF）；未指定时检测 `assets/cover.png`、`cover.jpg`、`cover.pdf`，都没有则生成白底黑字简洁封面 |
-| `--keep-temp` | | `false` | 保留中间产物（`build/_epub_contents/`、`build/raw_export.html`） |
+| `--cover` | `-c` | none | 自定义封面 |
+| `--keep-temp` | | `false` | 保留中间产物 |
 
 ## 目录结构
 
