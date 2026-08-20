@@ -1,0 +1,561 @@
+@charset "UTF-8";
+
+/* ============================================================
+ * 《筑梦细雨》 EPUB 专属样式表
+ * 完美映射 Typst 模板色彩与语义排版
+ *
+ * 所有颜色通过 CSS 变量集中管理，深色模式只需覆盖 :root 变量。
+ * ============================================================ */
+
+:root {
+  /* Brand & Base */
+  --primary-color: #3c71b7;
+  --link-color: #1f5f99;
+  --text-color: #2c3e50;
+  --bg-color: #ffffff;
+  --border-color: #d1d5db;
+  --muted-color: #6b7280;
+
+  /* Surfaces */
+  --surface-subtle: #f9fafb;
+  --surface-code: #f1f5f9;
+
+  /* Theorem (generic & character) */
+  --thm-fill: #eef6ff;
+  --thm-stroke: #7aa7d9;
+  --thm-header: #1e3a8a;
+
+  /* Character card (shares light-mode palette with thm) */
+  --char-fill: #eef6ff;
+  --char-stroke: #7aa7d9;
+  --char-header: #1e40af;
+
+  /* Definition & Lore */
+  --def-fill: #f2fbf4;
+  --def-stroke: #73ad7b;
+  --def-header: #166534;
+
+  /* Area / Faction */
+  --area-fill: #fbfcef;
+  --area-stroke: #bfa004;
+  --area-header: #854d0e;
+
+  /* Problem */
+  --prob-fill: #fff8e8;
+  --prob-stroke: #c89b3c;
+
+  /* Overview */
+  --overview-fill: #f7f7fb;
+  --overview-stroke: #a8a8b8;
+  --overview-header: #374151;
+
+  /* Remark & Proof */
+  --remark-fill: #f3f4f6;
+  --remark-stroke: #9ca3af;
+  --proof-fill: #f8fafc;
+  --proof-stroke: #60a5fa;
+
+  /* Block elements */
+  --rect-fill: #fffef8;
+  --rect-stroke: #FFD700;
+  --poem-border: #a8a8b8;
+
+  /* Footnotes */
+  --footnote-color: #4b5563;
+
+  /* Redacted */
+  --redacted-color: #000000;
+}
+
+/* ============================================================
+ * Base Typography
+ * ============================================================ */
+
+html, body {
+  margin: 0;
+  padding: 0 1.2em;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  font-family: "Source Serif 4", "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  font-size: 1rem;
+  line-height: 1.85;
+  text-align: justify;
+  word-break: break-word;
+}
+
+/* 标题样式 */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-color);
+  font-weight: bold;
+  font-family: "Source Sans 3", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.35;
+  text-indent: 0;
+}
+
+h1 {
+  font-size: 1.7em;
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+  padding-bottom: 0.3em;
+  border-bottom: 1.5px solid var(--primary-color);
+}
+
+h2 {
+  font-size: 1.35em;
+  margin-top: 1.4em;
+  margin-bottom: 0.6em;
+}
+
+h3 {
+  font-size: 1.15em;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+/* 段落与缩进 */
+p {
+  margin: 0.6em 0;
+  text-indent: 2em;
+}
+
+/* 对齐辅助类 */
+.text-align-center {
+  text-align: center !important;
+  text-indent: 0 !important;
+  margin: 1em 0;
+}
+
+.text-align-center p {
+  text-indent: 0 !important;
+}
+
+.text-align-right {
+  text-align: right !important;
+  text-indent: 0 !important;
+  margin: 0.8em 0;
+}
+
+.text-align-right p {
+  text-indent: 0 !important;
+}
+
+.text-align-left {
+  text-align: left !important;
+}
+
+/* 链接 */
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+ * 诗歌环境 (Poem)
+ * ============================================================ */
+
+.poem-box {
+  margin: 1.4em 0;
+  padding: 1.2em 1.5em;
+  border-top: 1px solid var(--poem-border);
+  border-bottom: 1px solid var(--poem-border);
+  font-style: normal;
+  font-family: "Source Serif 4", "LXGW WenKai", "KaiTi", serif;
+  text-indent: 0;
+  line-height: 1.9;
+}
+
+.poem-box p {
+  text-indent: 0 !important;
+  margin: 0.4em 0;
+}
+
+/* ============================================================
+ * 引用块 (Blockquote)
+ * ============================================================ */
+
+blockquote, .custom-blockquote {
+  margin: 1.2em 0;
+  padding: 1em 1.4em;
+  background-color: var(--surface-subtle);
+  border-left: 4px solid var(--primary-color);
+  border-radius: 0 4px 4px 0;
+  font-family: "Source Serif 4", "LXGW WenKai", "KaiTi", serif;
+}
+
+blockquote p, .custom-blockquote p {
+  text-indent: 0 !important;
+  margin: 0.4em 0;
+}
+
+.quote-block {
+  font-family: "Source Serif 4", "LXGW WenKai", "KaiTi", serif;
+  margin: 0.8em 0;
+}
+
+/* ============================================================
+ * 矩形块 (Rect)
+ * ============================================================ */
+
+.custom-rect {
+  margin: 1.2em 0;
+  padding: 1em;
+  border: 1.5px solid var(--rect-stroke);
+  border-radius: 6px;
+  background-color: var(--rect-fill);
+}
+
+/* ============================================================
+ * 定理与设定卡片 (Theorems, Lore, Character, Area, Overview)
+ * ============================================================ */
+
+.thm-box {
+  margin: 1.3em 0;
+  padding: 0.9em 1.2em;
+  border-radius: 4px;
+  border-left: 4.5px solid var(--thm-stroke);
+  background-color: var(--thm-fill);
+}
+
+.thm-box .thm-header {
+  font-size: 1.05em;
+  font-weight: bold;
+  color: var(--thm-header);
+  margin-bottom: 0.4em;
+  text-indent: 0;
+}
+
+.thm-box .thm-content {
+  text-indent: 0;
+  font-style: italic;
+}
+
+.thm-box .thm-content p {
+  text-indent: 0 !important;
+  margin: 0.4em 0;
+}
+
+.thm-box .thm-content ul, .thm-box .thm-content ol {
+  margin: 0.4em 0 0.4em 1.2em;
+  padding: 0;
+}
+
+/* 角色卡片 */
+.thm-character {
+  border-left-color: var(--char-stroke);
+  background-color: var(--char-fill);
+}
+
+.thm-character .thm-header {
+  color: var(--char-header);
+}
+
+/* 设定卡片 */
+.thm-lore, .thm-definition {
+  border-left-color: var(--def-stroke);
+  background-color: var(--def-fill);
+}
+
+.thm-lore .thm-header, .thm-definition .thm-header {
+  color: var(--def-header);
+}
+
+/* 势力卡片 */
+.thm-area {
+  border-left-color: var(--area-stroke);
+  background-color: var(--area-fill);
+}
+
+.thm-area .thm-header {
+  color: var(--area-header);
+}
+
+/* 概览卡片 */
+.thm-overview {
+  border-left-color: var(--overview-stroke);
+  background-color: var(--overview-fill);
+}
+
+.thm-overview .thm-header {
+  color: var(--overview-header);
+}
+
+/* 问题卡片 */
+.thm-problem {
+  border-left-color: var(--prob-stroke);
+  background-color: var(--prob-fill);
+}
+
+/* 注释与证明 */
+.thm-remark {
+  border-left-color: var(--remark-stroke);
+  background-color: var(--remark-fill);
+}
+
+.thm-proof {
+  border-left-color: var(--proof-stroke);
+  background-color: var(--proof-fill);
+}
+
+/* ============================================================
+ * 表格排版 (Tables)
+ * ============================================================ */
+
+figure {
+  margin: 1.5em 0;
+  text-align: center;
+  text-indent: 0;
+}
+
+figcaption {
+  font-size: 0.9em;
+  color: var(--muted-color);
+  margin-top: 0.5em;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 0.95em;
+}
+
+th, td {
+  padding: 0.6em 0.8em;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+}
+
+th {
+  background-color: var(--surface-subtle);
+  font-weight: bold;
+  border-top: 2px solid var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+/* ============================================================
+ * 图片与媒体 (Images)
+ * ============================================================ */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1em auto;
+  border-radius: 4px;
+}
+
+.cover-page {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.cover-svg {
+  width: 100%;
+  height: 100vh;
+  max-height: 100%;
+}
+
+/* ============================================================
+ * 代码与注音 (Code & Ruby)
+ * ============================================================ */
+
+code, pre {
+  font-family: "Maple Mono NF", "Fira Code", monospace;
+  font-size: 0.9em;
+  background-color: var(--surface-code);
+  border-radius: 3px;
+}
+
+pre {
+  padding: 0.8em 1em;
+  overflow-x: auto;
+  line-height: 1.5;
+  text-indent: 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+ruby {
+  ruby-align: center;
+}
+
+rt {
+  font-size: 0.65em;
+  color: var(--footnote-color);
+}
+
+/* 列表 */
+ul, ol {
+  padding-left: 1.5em;
+  margin: 0.6em 0;
+}
+
+li {
+  margin: 0.3em 0;
+}
+
+/* ============================================================
+ * 涂黑/遮蔽文本 (Redacted Text from #box(fill: black))
+ * ============================================================ */
+
+.redacted {
+  background-color: var(--redacted-color);
+  color: var(--redacted-color);
+  display: inline;
+  padding: 0 0.15em;
+  border-radius: 2px;
+  cursor: default;
+  /* 防止选中时泄露内容 */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+
+/* ============================================================
+ * 章节脚注 (Per-chapter Footnotes)
+ * ============================================================ */
+
+.chapter-footnotes {
+  margin-top: 2em;
+  padding-top: 0.8em;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.88em;
+  color: var(--footnote-color);
+  line-height: 1.6;
+}
+
+.chapter-footnotes ol {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.chapter-footnotes li {
+  margin: 0.4em 0;
+  text-indent: 0;
+}
+
+.chapter-footnotes li p {
+  text-indent: 0;
+  display: inline;
+}
+
+sup[role="doc-noteref"] {
+  font-size: 0.75em;
+  vertical-align: super;
+  line-height: 0;
+}
+
+sup[role="doc-noteref"] a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+sup[role="doc-backlink"] {
+  font-size: 0.75em;
+  margin-right: 0.3em;
+}
+
+sup[role="doc-backlink"] a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+/* ============================================================
+ * MathML 数学公式排版
+ * ============================================================ */
+
+math {
+  font-family: "New Computer Modern Math", "Cambria Math", "Latin Modern Math", serif;
+  font-size: 1.05em;
+  direction: ltr;
+  display: inline-block;
+  vertical-align: -0.15em;
+}
+
+math[display="block"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* ============================================================
+ * 深色模式适配 (Dark Mode / Night Reading)
+ *
+ * 所有颜色变更集中在 :root 变量覆盖，无需重复选择器。
+ * ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Brand & Base */
+    --primary-color: #60a5fa;
+    --link-color: #93c5fd;
+    --text-color: #e2e8f0;
+    --bg-color: #121827;
+    --border-color: #374151;
+    --muted-color: #9ca3af;
+
+    /* Surfaces */
+    --surface-subtle: #1e293b;
+    --surface-code: #1f2937;
+
+    /* Theorem (generic) */
+    --thm-fill: #1e293b;
+    --thm-stroke: #3b82f6;
+    --thm-header: #93c5fd;
+
+    /* Character card */
+    --char-fill: #172554;
+    --char-stroke: #60a5fa;
+    --char-header: #bfdbfe;
+
+    /* Definition & Lore */
+    --def-fill: #142e20;
+    --def-stroke: #22c55e;
+    --def-header: #86efac;
+
+    /* Area / Faction */
+    --area-fill: #2d2a13;
+    --area-stroke: #eab308;
+    --area-header: #fef08a;
+
+    /* Problem */
+    --prob-fill: #332614;
+    --prob-stroke: #f59e0b;
+
+    /* Overview */
+    --overview-fill: #1e1e28;
+    --overview-stroke: #94a3b8;
+    --overview-header: #cbd5e1;
+
+    /* Remark & Proof */
+    --remark-fill: #1f2937;
+    --remark-stroke: #9ca3af;
+    --proof-fill: #1e293b;
+    --proof-stroke: #60a5fa;
+
+    /* Block elements */
+    --rect-fill: #1e222d;
+    --rect-stroke: #eab308;
+    --poem-border: #4b5563;
+
+    /* Footnotes */
+    --footnote-color: #9ca3af;
+
+    /* Redacted */
+    --redacted-color: #475569;
+  }
+}

@@ -1,0 +1,12 @@
+# Editor files
+.vscode/
+.idea/
+.zed/
+tmp/
+output/
+
+# File
+*.pdf
+*.epub
+build/
+.venv/
